@@ -1,10 +1,14 @@
-import config.ColorScheme;
 import config.GameConfig;
 import de.ur.mi.oop.app.GraphicsApp;
 import de.ur.mi.oop.events.*;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 import game.scenes.BaseScene;
-import game.scenes.DemoScene;
+import game.scenes.IntroScene;
+import game.scenes.SceneListener;
+import game.scenes.SceneType;
+import utils.FontLoader;
+
+import java.util.WeakHashMap;
 
 /**
  * Auf Basis dieses Grundgerüst können Sie Ihr eigenes Spiel entwickeln. In der GameConfig finden Sie
@@ -13,16 +17,19 @@ import game.scenes.DemoScene;
  * als ZIP-Datei hoch.
  */
 
-public class NightOfTheLivingBread extends GraphicsApp {
+public class NightOfTheLivingBread extends GraphicsApp implements SceneListener {
 
     private BaseScene currentScene;
-    private DemoScene demoScene;
+    private WeakHashMap<String, BaseScene> scenes;
 
     @Override
     public void initialize() {
+        FontLoader.loadFonts(GameConfig.FONT_DIR);
         setCanvasSize(GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT);
-        demoScene = new DemoScene(this, "DemoScene", ColorScheme.DARK_SEA_GREEN);
-        currentScene = demoScene;
+        scenes = new WeakHashMap<>();
+        scenes.put(IntroScene.SCENE_NAME, new IntroScene(this));
+        currentScene = scenes.get(IntroScene.SCENE_NAME);
+        currentScene.play();
     }
 
     @Override
@@ -32,7 +39,7 @@ public class NightOfTheLivingBread extends GraphicsApp {
 
     @Override
     public void onMousePressed(MousePressedEvent event) {
-       currentScene.handleMousePressed(event);
+        currentScene.handleMousePressed(event);
     }
 
     @Override
@@ -59,9 +66,21 @@ public class NightOfTheLivingBread extends GraphicsApp {
     public void onKeyReleased(KeyReleasedEvent event) {
         currentScene.handleKeyReleased(event);
     }
-    
+
     public static void main(String[] args) {
         // Instanziiert eine Instanz dieser Klasse und startet die GraphicsApp
         GraphicsAppLauncher.launch();
+    }
+
+    @Override
+    public void onScenePlayed(BaseScene scene) {
+
+    }
+
+    @Override
+    public void onScenePaused(BaseScene scene) {
+        if(scene.getType() == SceneType.INTRO) {
+            System.out.println("Intro paused: starting game ...");
+        }
     }
 }

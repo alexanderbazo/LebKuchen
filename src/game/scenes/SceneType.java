@@ -1,2 +1,6 @@
-package game.scenes;public enum SceneType {
+package game.scenes;
+
+public enum SceneType {
+    DEFAULT,
+    INTRO
 }

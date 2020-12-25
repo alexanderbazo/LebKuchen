@@ -6,6 +6,7 @@ import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.graphics.GraphicsObject;
 import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Rectangle;
+import game.actors.Actor;
 
 import java.util.ArrayList;
 

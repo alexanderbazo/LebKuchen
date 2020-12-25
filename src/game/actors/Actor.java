@@ -1,4 +1,6 @@
-package game.scenes;
+package game.actors;
+
+import game.scenes.BaseScene;
 
 public abstract class Actor {
 
