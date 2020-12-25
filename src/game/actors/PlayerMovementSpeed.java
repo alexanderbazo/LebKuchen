@@ -8,7 +8,7 @@ public enum PlayerMovementSpeed {
 
     public final float speed;
 
-    private PlayerMovementSpeed(float speed) {
+    PlayerMovementSpeed(float speed) {
         this.speed = speed;
     }
 }
