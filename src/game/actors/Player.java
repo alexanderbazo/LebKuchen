@@ -15,8 +15,9 @@ public class Player extends Actor implements KeyboardInputHandler {
     private PlayerMovementSpeed currentSpeed = PlayerMovementSpeed.DEFAULT;
     private Circle body;
 
-    public Player(int x, int y, BaseScene hostScene) {
+    public Player(int x, int y, PlayerMovementSpeed speed, BaseScene hostScene) {
         super(x, y, hostScene);
+        currentSpeed = speed;
         body = new Circle(x, y, radius, ColorScheme.FLACESCENT);
     }
 
