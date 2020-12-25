@@ -14,4 +14,9 @@ public abstract class ColorScheme {
     public static final Color ARYLIDE_YELLOW = new Color(236, 217, 105);
     public static final Color DARK_SEA_GREEN = new Color(153, 211, 136);
 
+    /**
+     * Base colors
+     */
+    public static  final Color WHITE = new Color(255,255,255);
+
 }

@@ -19,7 +19,7 @@ public class IntroScene extends BaseScene {
     }
 
     private void initVersionNumber() {
-        version = new TextView(5, 5, this);
+        version = new TextView(20, 20, this);
         version.setText("Version: " + GameConfig.GAME_VERSION);
         version.setColor(Colors.WHITE);
         version.setTextSize(12);
@@ -28,7 +28,7 @@ public class IntroScene extends BaseScene {
     }
 
     private void initHint() {
-        hint = new TextView(75, 375, this);
+        hint = new TextView(100, 800, this);
         hint.setText("Press SPACE to continue");
         hint.setColor(Colors.WHITE);
         hint.setTextSize(32);
