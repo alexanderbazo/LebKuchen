@@ -42,34 +42,10 @@ public class IntroScene extends BaseScene {
     }
 
     @Override
-    public void handleMousePressed(MousePressedEvent event) {
-
-    }
-
-    @Override
-    public void handleMouseReleased(MouseReleasedEvent event) {
-
-    }
-
-    @Override
-    public void handleMouseMoved(MouseMovedEvent event) {
-
-    }
-
-    @Override
-    public void handleMouseDragged(MouseDraggedEvent event) {
-
-    }
-
-    @Override
     public void handleKeyPressed(KeyPressedEvent event) {
-        if(event.getKeyCode() == KeyPressedEvent.VK_SPACE) {
+        super.handleKeyPressed(event);
+        if (event.getKeyCode() == KeyPressedEvent.VK_SPACE) {
             pause();
         }
-    }
-
-    @Override
-    public void handleKeyReleased(KeyReleasedEvent event) {
-
     }
 }

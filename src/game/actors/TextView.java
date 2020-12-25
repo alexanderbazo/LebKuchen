@@ -9,8 +9,14 @@ public class TextView extends Actor {
     private final Label label;
 
     public TextView(int x, int y, BaseScene hostScene) {
-        super(hostScene);
+        super(x, y, hostScene);
         label = new Label(x, y, "");
+    }
+
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+        this.label.setPosition(x, y);
     }
 
     @Override
@@ -45,6 +51,7 @@ public class TextView extends Actor {
     public int getWidth() {
         return label.getWidthEstimate();
     }
+
     public int getHeight() {
         return label.getHeightEstimate();
     }
