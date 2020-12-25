@@ -13,6 +13,10 @@ public abstract class Actor {
         position = new Point(x, y);
     }
 
+    public BaseScene getHost() {
+        return hostScene;
+    }
+
     public void setPosition(float x, float y) {
         this.position.setLocation(x, y);
     }
