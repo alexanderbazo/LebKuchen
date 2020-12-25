@@ -4,6 +4,8 @@ import de.ur.mi.oop.app.GraphicsApp;
 import de.ur.mi.oop.events.*;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 import game.scenes.BaseScene;
+import game.scenes.SceneState;
+import game.scenes.game.GameScene;
 import game.scenes.intro.IntroScene;
 import game.scenes.SceneListener;
 import game.scenes.SceneType;
@@ -27,10 +29,27 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
     public void initialize() {
         FontLoader.loadFonts(Fonts.FONT_DIR);
         setCanvasSize(GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT);
+        initScenes();
+        switchToScene(IntroScene.SCENE_NAME);
+    }
+
+    private void initScenes() {
         scenes = new WeakHashMap<>();
+        scenes.put(GameScene.SCENE_NAME, new GameScene(this));
         scenes.put(IntroScene.SCENE_NAME, new IntroScene(this));
-        currentScene = scenes.get(IntroScene.SCENE_NAME);
+    }
+
+    private void switchToScene(String sceneName) {
+        BaseScene newScene = scenes.get(sceneName);
+        if(newScene == null) {
+            return;
+        }
+        if(currentScene != null && currentScene.getState() == SceneState.PLAYING) {
+            currentScene.pause();
+        }
+        currentScene = newScene;
         currentScene.play();
+
     }
 
     @Override
@@ -102,7 +121,7 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
     @Override
     public void onScenePaused(BaseScene scene) {
         if(scene.getType() == SceneType.INTRO) {
-            System.out.println("Intro paused: starting game ...");
+            switchToScene(GameScene.SCENE_NAME);
         }
     }
 }
