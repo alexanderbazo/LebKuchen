@@ -1,9 +1,10 @@
+import config.Fonts;
 import config.GameConfig;
 import de.ur.mi.oop.app.GraphicsApp;
 import de.ur.mi.oop.events.*;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 import game.scenes.BaseScene;
-import game.scenes.IntroScene;
+import game.scenes.intro.IntroScene;
 import game.scenes.SceneListener;
 import game.scenes.SceneType;
 import utils.FontLoader;
@@ -24,7 +25,7 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
 
     @Override
     public void initialize() {
-        FontLoader.loadFonts(GameConfig.FONT_DIR);
+        FontLoader.loadFonts(Fonts.FONT_DIR);
         setCanvasSize(GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT);
         scenes = new WeakHashMap<>();
         scenes.put(IntroScene.SCENE_NAME, new IntroScene(this));
@@ -34,36 +35,57 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
 
     @Override
     public void draw() {
+        if(currentScene == null) {
+            return;
+        }
         currentScene.render();
     }
 
     @Override
     public void onMousePressed(MousePressedEvent event) {
+        if(currentScene == null) {
+            return;
+        }
         currentScene.handleMousePressed(event);
     }
 
     @Override
     public void onMouseReleased(MouseReleasedEvent event) {
+        if(currentScene == null) {
+            return;
+        }
         currentScene.handleMouseReleased(event);
     }
 
     @Override
     public void onMouseMoved(MouseMovedEvent event) {
+        if(currentScene == null) {
+            return;
+        }
         currentScene.handleMouseMoved(event);
     }
 
     @Override
     public void onMouseDragged(MouseDraggedEvent event) {
+        if(currentScene == null) {
+            return;
+        }
         currentScene.handleMouseDragged(event);
     }
 
     @Override
     public void onKeyPressed(KeyPressedEvent event) {
+        if(currentScene == null) {
+            return;
+        }
         currentScene.handleKeyPressed(event);
     }
 
     @Override
     public void onKeyReleased(KeyReleasedEvent event) {
+        if(currentScene == null) {
+            return;
+        }
         currentScene.handleKeyReleased(event);
     }
 
