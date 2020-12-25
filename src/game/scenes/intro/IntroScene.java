@@ -1,10 +1,15 @@
-package game.scenes;
+package game.scenes.intro;
 
 import config.Assets;
+import config.ColorScheme;
+import config.Fonts;
 import config.GameConfig;
 import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.events.*;
 import game.actors.TextView;
+import game.scenes.BaseScene;
+import game.scenes.SceneListener;
+import game.scenes.SceneType;
 
 public class IntroScene extends BaseScene {
 
@@ -21,18 +26,18 @@ public class IntroScene extends BaseScene {
     private void initVersionNumber() {
         version = new TextView(20, 20, this);
         version.setText("Version: " + GameConfig.GAME_VERSION);
-        version.setColor(Colors.WHITE);
-        version.setTextSize(12);
-        version.setFont("Creepster");
+        version.setColor(ColorScheme.WHITE);
+        version.setTextSize(Fonts.SIZE_SMALL);
+        version.setFont(Fonts.DEFAULT_FONT);
         addActor(version);
     }
 
     private void initHint() {
         hint = new TextView(100, 800, this);
         hint.setText("Press SPACE to continue");
-        hint.setColor(Colors.WHITE);
-        hint.setTextSize(32);
-        hint.setFont("Creepster");
+        hint.setColor(ColorScheme.WHITE);
+        hint.setTextSize(Fonts.SIZE_LARGE);
+        hint.setFont(Fonts.DEFAULT_FONT);
         addActor(hint);
     }
 
