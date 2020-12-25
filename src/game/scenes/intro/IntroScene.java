@@ -1,10 +1,6 @@
 package game.scenes.intro;
 
-import config.Assets;
-import config.ColorScheme;
-import config.Fonts;
-import config.GameConfig;
-import de.ur.mi.oop.colors.Colors;
+import config.*;
 import de.ur.mi.oop.events.*;
 import game.actors.TextView;
 import game.scenes.BaseScene;
@@ -25,7 +21,7 @@ public class IntroScene extends BaseScene {
 
     private void initVersionNumber() {
         version = new TextView(20, 20, this);
-        version.setText("Version: " + GameConfig.GAME_VERSION);
+        version.setText("Version: " + Game.GAME_VERSION);
         version.setColor(ColorScheme.WHITE);
         version.setTextSize(Fonts.SIZE_SMALL);
         version.setFont(Fonts.DEFAULT_FONT);

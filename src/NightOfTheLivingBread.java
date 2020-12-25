@@ -1,5 +1,5 @@
 import config.Fonts;
-import config.GameConfig;
+import config.Display;
 import de.ur.mi.oop.app.GraphicsApp;
 import de.ur.mi.oop.events.*;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
@@ -28,7 +28,7 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
     @Override
     public void initialize() {
         FontLoader.loadFonts(Fonts.FONT_DIR);
-        setCanvasSize(GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT);
+        setCanvasSize(Display.WINDOW_WIDTH, Display.WINDOW_HEIGHT);
         initScenes();
         switchToScene(IntroScene.SCENE_NAME);
     }
