@@ -1,6 +1,6 @@
 package game.scenes;
 
-import config.GameConfig;
+import config.Display;
 import de.ur.mi.oop.colors.Color;
 import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.events.*;
@@ -31,14 +31,14 @@ public abstract class BaseScene implements KeyboardInputHandler, MouseInputHandl
         this.actors = new ArrayList<>();
         this.keyboardInputHandlers = new ArrayList<>();
         this.mouseInputHandlers = new ArrayList<>();
-        this.background = new Rectangle(0, 0, GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT, Colors.BLACK);
+        this.background = new Rectangle(0, 0, Display.WINDOW_WIDTH, Display.WINDOW_HEIGHT, Colors.BLACK);
     }
 
     public BaseScene(String sceneName, SceneType sceneType, SceneListener sceneListener, String backgroundImagePath) {
         this(sceneName, sceneType, sceneListener);
         Image image = new Image(0, 0, backgroundImagePath);
-        image.setWidth(GameConfig.WINDOW_WIDTH, true);
-        image.setHeight(GameConfig.WINDOW_HEIGHT, true);
+        image.setWidth(Display.WINDOW_WIDTH, true);
+        image.setHeight(Display.WINDOW_HEIGHT, true);
         this.background = image;
     }
 
@@ -98,7 +98,7 @@ public abstract class BaseScene implements KeyboardInputHandler, MouseInputHandl
         draw();
     }
 
-    private void update() {
+    public void update() {
         if (sceneState == SceneState.PAUSED) {
             return;
         }
@@ -107,7 +107,7 @@ public abstract class BaseScene implements KeyboardInputHandler, MouseInputHandl
         }
     }
 
-    private void draw() {
+    public void draw() {
         for (Actor actor : actors) {
             actor.draw();
         }
