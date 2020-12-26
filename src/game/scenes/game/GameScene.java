@@ -9,6 +9,7 @@ import game.levels.Level;
 import game.scenes.BaseScene;
 import game.scenes.SceneListener;
 import game.scenes.SceneType;
+import utils.DebugInfo;
 
 import java.util.ArrayList;
 
@@ -49,6 +50,7 @@ public class GameScene extends BaseScene implements EnemySpawnListener {
     @Override
     public void onEnemySpawned(Enemy enemy) {
         enemies.add(enemy);
+        DebugInfo.getInstance().set("No. of enemies", enemies.size());
         addActor(enemy);
     }
 }

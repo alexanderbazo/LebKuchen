@@ -7,6 +7,7 @@ import de.ur.mi.oop.graphics.Circle;
 import de.ur.mi.oop.graphics.Point;
 import game.input.KeyboardInputHandler;
 import game.scenes.BaseScene;
+import utils.DebugInfo;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,8 @@ public class Player extends Actor implements KeyboardInputHandler {
     public void move(float x, float y) {
         super.move(x, y);
         body.move(x, y);
+        DebugInfo.getInstance().set("Player-X", getPosition().getXPos());
+        DebugInfo.getInstance().set("Player-Y", getPosition().getYPos());
     }
 
     @Override

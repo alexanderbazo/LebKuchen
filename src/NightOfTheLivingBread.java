@@ -9,6 +9,7 @@ import game.scenes.game.GameScene;
 import game.scenes.intro.IntroScene;
 import game.scenes.SceneListener;
 import game.scenes.SceneType;
+import utils.DebugInfo;
 import utils.FontLoader;
 
 import java.util.WeakHashMap;
@@ -49,7 +50,6 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
         }
         currentScene = newScene;
         currentScene.play();
-
     }
 
     @Override
@@ -58,6 +58,7 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
             return;
         }
         currentScene.render();
+        DebugInfo.getInstance().draw();
     }
 
     @Override
@@ -122,6 +123,7 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
     public void onScenePaused(BaseScene scene) {
         if(scene.getType() == SceneType.INTRO) {
             switchToScene(GameScene.SCENE_NAME);
+            DebugInfo.getInstance().show();
         }
     }
 }
