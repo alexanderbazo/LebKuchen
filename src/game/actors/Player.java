@@ -56,27 +56,47 @@ public class Player extends Actor implements KeyboardInputHandler {
         return vector;
     }
 
+    private void addDirection(PlayerMovementDirection direction) {
+        if (!directions.contains(direction)) {
+            directions.add(direction);
+        }
+    }
+
+    private void removeDirection(PlayerMovementDirection direction) {
+        directions.remove(direction);
+    }
+
+    private void activateFastMovement() {
+        if (currentSpeed == PlayerMovementSpeed.HIGH) {
+            return;
+        }
+        currentSpeed = PlayerMovementSpeed.HIGH;
+    }
+
+    private void deactivateFastMovement() {
+        currentSpeed = PlayerMovementSpeed.DEFAULT;
+    }
+
     @Override
     public void handleKeyPressed(KeyPressedEvent event) {
-        PlayerMovementDirection newDirection = null;
         switch (event.getKeyCode()) {
             case KeyPressedEvent.VK_W:
-                newDirection = PlayerMovementDirection.NORTH;
+                addDirection(PlayerMovementDirection.NORTH);
                 break;
             case KeyPressedEvent.VK_S:
-                newDirection = PlayerMovementDirection.SOUTH;
+                addDirection(PlayerMovementDirection.SOUTH);
                 break;
             case KeyPressedEvent.VK_A:
-                newDirection = PlayerMovementDirection.WEST;
+                addDirection(PlayerMovementDirection.WEST);
                 break;
             case KeyPressedEvent.VK_D:
-                newDirection = PlayerMovementDirection.EAST;
+                addDirection(PlayerMovementDirection.EAST);
+                break;
+            case KeyPressedEvent.VK_SHIFT:
+                activateFastMovement();
                 break;
             default:
                 break;
-        }
-        if(newDirection != null && !directions.contains(newDirection)) {
-            directions.add(newDirection);
         }
     }
 
@@ -84,16 +104,19 @@ public class Player extends Actor implements KeyboardInputHandler {
     public void handleKeyReleased(KeyReleasedEvent event) {
         switch (event.getKeyCode()) {
             case KeyPressedEvent.VK_W:
-                directions.remove(PlayerMovementDirection.NORTH);
+                removeDirection(PlayerMovementDirection.NORTH);
                 break;
             case KeyPressedEvent.VK_S:
-                directions.remove(PlayerMovementDirection.SOUTH);
+                removeDirection(PlayerMovementDirection.SOUTH);
                 break;
             case KeyPressedEvent.VK_A:
-                directions.remove(PlayerMovementDirection.WEST);
+                removeDirection(PlayerMovementDirection.WEST);
                 break;
             case KeyPressedEvent.VK_D:
-                directions.remove(PlayerMovementDirection.EAST);
+                removeDirection(PlayerMovementDirection.EAST);
+                break;
+            case KeyPressedEvent.VK_SHIFT:
+                deactivateFastMovement();
                 break;
             default:
                 break;
