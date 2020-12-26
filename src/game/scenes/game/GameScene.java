@@ -28,16 +28,18 @@ public class GameScene extends BaseScene implements EnemySpawnListener {
         player = new Player(Display.WINDOW_WIDTH / 2, Display.WINDOW_HEIGHT / 2, level.playerSpeed, this);
         enemies = new ArrayList<>();
         spawner = new EnemySpawner(this, this);
-        spawner.setLevel(level);
         addActor(player);
+    }
+
+    @Override
+    public void play() {
+        spawner.reset(level);
     }
 
     @Override
     public void update() {
         super.update();
-        if (enemies.size() < level.totalNumberOfEnemies) {
-            spawner.update();
-        }
+        spawner.update();
     }
 
     public Point getPlayerPosition() {
