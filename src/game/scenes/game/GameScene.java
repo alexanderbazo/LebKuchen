@@ -50,7 +50,7 @@ public class GameScene extends BaseScene implements EnemySpawnListener {
     @Override
     public void onEnemySpawned(Enemy enemy) {
         enemies.add(enemy);
-        DebugInfo.getInstance().set("No. of enemies", enemies.size());
+        DebugInfo.set("No. of enemies", enemies.size());
         addActor(enemy);
     }
 }

@@ -4,6 +4,7 @@ import config.Display;
 import game.actors.Enemy;
 import game.levels.Level;
 import game.scenes.BaseScene;
+import utils.DebugInfo;
 
 import java.util.Random;
 

@@ -58,7 +58,7 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
             return;
         }
         currentScene.render();
-        DebugInfo.getInstance().draw();
+        DebugInfo.draw();
     }
 
     @Override
@@ -123,7 +123,7 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
     public void onScenePaused(BaseScene scene) {
         if(scene.getType() == SceneType.INTRO) {
             switchToScene(GameScene.SCENE_NAME);
-            DebugInfo.getInstance().show();
+            DebugInfo.show();
         }
     }
 }

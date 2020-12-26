@@ -30,8 +30,8 @@ public class Player extends Actor implements KeyboardInputHandler {
     public void move(float x, float y) {
         super.move(x, y);
         body.move(x, y);
-        DebugInfo.getInstance().set("Player-X", getPosition().getXPos());
-        DebugInfo.getInstance().set("Player-Y", getPosition().getYPos());
+        DebugInfo.set("Player-X", getPosition().getXPos());
+        DebugInfo.set("Player-Y", getPosition().getYPos());
     }
 
     @Override
