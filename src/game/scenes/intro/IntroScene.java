@@ -29,7 +29,7 @@ public class IntroScene extends BaseScene {
     }
 
     private void initHint() {
-        hint = new TextView(100, 800, this);
+        hint = new TextView(75, 375, this);
         hint.setText("Press SPACE to continue");
         hint.setColor(ColorScheme.WHITE);
         hint.setTextSize(Fonts.SIZE_LARGE);
