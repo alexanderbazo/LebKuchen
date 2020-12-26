@@ -1,12 +1,14 @@
 package game.actors;
 
 import config.ColorScheme;
-import de.ur.mi.oop.colors.Color;
 import de.ur.mi.oop.events.KeyPressedEvent;
 import de.ur.mi.oop.events.KeyReleasedEvent;
 import de.ur.mi.oop.graphics.Circle;
+import de.ur.mi.oop.graphics.Point;
 import game.input.KeyboardInputHandler;
 import game.scenes.BaseScene;
+
+import java.util.ArrayList;
 
 public class Player extends Actor implements KeyboardInputHandler {
 
@@ -14,10 +16,12 @@ public class Player extends Actor implements KeyboardInputHandler {
 
     private PlayerMovementSpeed currentSpeed = PlayerMovementSpeed.DEFAULT;
     private Circle body;
+    private ArrayList<PlayerMovementDirection> directions;
 
     public Player(int x, int y, PlayerMovementSpeed speed, BaseScene hostScene) {
         super(x, y, hostScene);
         currentSpeed = speed;
+        directions = new ArrayList<>();
         body = new Circle(x, y, radius, ColorScheme.FLACESCENT);
     }
 
@@ -33,27 +37,63 @@ public class Player extends Actor implements KeyboardInputHandler {
     }
 
     @Override
+    public void update() {
+        super.update();
+        Point newPosition = getMovementVector();
+        move(newPosition.getXPos() * currentSpeed.speed, newPosition.getYPos() * currentSpeed.speed);
+    }
+
+    private Point getMovementVector() {
+        Point vector = new Point(0, 0);
+        for (PlayerMovementDirection direction : directions) {
+            float x = vector.getXPos() + direction.x;
+            float y = vector.getYPos() + direction.y;
+            vector.setLocation(x, y);
+        }
+        return vector;
+    }
+
+    @Override
     public void handleKeyPressed(KeyPressedEvent event) {
-        switch(event.getKeyCode()) {
+        PlayerMovementDirection newDirection = null;
+        switch (event.getKeyCode()) {
             case KeyPressedEvent.VK_W:
-                move(0, -currentSpeed.speed);
+                newDirection = PlayerMovementDirection.NORTH;
                 break;
             case KeyPressedEvent.VK_S:
-                move(0, currentSpeed.speed);
+                newDirection = PlayerMovementDirection.SOUTH;
                 break;
             case KeyPressedEvent.VK_A:
-                move(-currentSpeed.speed, 0);
+                newDirection = PlayerMovementDirection.WEST;
                 break;
             case KeyPressedEvent.VK_D:
-                move(currentSpeed.speed, 0);
+                newDirection = PlayerMovementDirection.EAST;
                 break;
             default:
                 break;
+        }
+        if(newDirection != null && !directions.contains(newDirection)) {
+            directions.add(newDirection);
         }
     }
 
     @Override
     public void handleKeyReleased(KeyReleasedEvent event) {
-
+        switch (event.getKeyCode()) {
+            case KeyPressedEvent.VK_W:
+                directions.remove(PlayerMovementDirection.NORTH);
+                break;
+            case KeyPressedEvent.VK_S:
+                directions.remove(PlayerMovementDirection.SOUTH);
+                break;
+            case KeyPressedEvent.VK_A:
+                directions.remove(PlayerMovementDirection.WEST);
+                break;
+            case KeyPressedEvent.VK_D:
+                directions.remove(PlayerMovementDirection.EAST);
+                break;
+            default:
+                break;
+        }
     }
 }
