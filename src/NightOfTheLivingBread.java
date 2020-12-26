@@ -25,6 +25,7 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
 
     private BaseScene currentScene;
     private WeakHashMap<String, BaseScene> scenes;
+    private long lastFrameDrawnAt = -1;
 
     @Override
     public void initialize() {
@@ -58,7 +59,18 @@ public class NightOfTheLivingBread extends GraphicsApp implements SceneListener 
             return;
         }
         currentScene.render();
+        updateFPSCounter();
         DebugInfo.draw();
+        lastFrameDrawnAt = System.currentTimeMillis();
+    }
+
+    private void updateFPSCounter() {
+        if(lastFrameDrawnAt == -1) {
+            return;
+        }
+        long frameTime = System.currentTimeMillis() - lastFrameDrawnAt;
+        float fps = 1000 / frameTime;
+        DebugInfo.set("FPS", fps);
     }
 
     @Override
