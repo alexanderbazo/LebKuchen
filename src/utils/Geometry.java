@@ -1,6 +1,7 @@
 package utils;
 
 import de.ur.mi.oop.graphics.Point;
+import de.ur.mi.oop.graphics.Rectangle;
 
 public abstract class Geometry {
 
@@ -9,5 +10,9 @@ public abstract class Geometry {
         float xMovement = (float) (Math.cos(angle) * speed);
         float yMovement = (float) (Math.sin(angle) * speed);
         return new Point(xMovement, yMovement);
+    }
+
+    public static boolean intersects(Rectangle one, Rectangle two) {
+        return (one.getLeftBorder() < two.getRightBorder() && one.getRightBorder() > two.getLeftBorder() && one.getTopBorder() < two.getBottomBorder() && one.getBottomBorder() > two.getTopBorder());
     }
 }

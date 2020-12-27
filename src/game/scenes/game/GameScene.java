@@ -5,6 +5,7 @@ import config.Display;
 import config.Weapons;
 import de.ur.mi.oop.graphics.Circle;
 import de.ur.mi.oop.graphics.Point;
+import de.ur.mi.oop.graphics.Rectangle;
 import game.actors.Actor;
 import game.actors.enemy.Enemy;
 import game.actors.enemy.EnemyListener;
@@ -21,6 +22,7 @@ import game.scenes.SceneListener;
 import game.scenes.SceneType;
 import game.world.GameWorld;
 import utils.DebugInfo;
+import utils.Geometry;
 
 import java.util.ArrayList;
 
@@ -120,10 +122,21 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
     @Override
     public ArrayList<Enemy> getEnemiesAt(float x, float y, float radius) {
         ArrayList<Enemy> enemies = new ArrayList<>();
-        Circle bounds = new Circle(x, y, radius);
+        // Using rectangular hit box for  blast radius
+        Rectangle hitBox = new Rectangle(x, y, radius, radius);
         for(Actor enemy: getActorOfType(Enemy.class)) {
-            // @TODO Use hitBox instead of center to determine if enemies are within radius
-            if(bounds.hitTest(enemy.getPosition().getXPos(), enemy.getPosition().getYPos())) {
+            if(Geometry.intersects(enemy.getHitBox(), hitBox)) {
+                enemies.add((Enemy) enemy);
+            }
+        }
+        return enemies;
+    }
+
+    @Override
+    public ArrayList<Enemy> getIntersectingEnemies(Rectangle hitBox) {
+        ArrayList<Enemy> enemies = new ArrayList<>();
+        for(Actor enemy: getActorOfType(Enemy.class)) {
+            if(Geometry.intersects(enemy.getHitBox(), hitBox)) {
                 enemies.add((Enemy) enemy);
             }
         }

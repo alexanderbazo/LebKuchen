@@ -20,7 +20,7 @@ public class Level {
     }
 
     public static Level next() {
-        return new Level(1, PlayerMovementSpeed.DEFAULT, EnemyMovementSpeed.DEFAULT, 50, 60);
+        return new Level(1, PlayerMovementSpeed.DEFAULT, EnemyMovementSpeed.DEFAULT, 25, 60);
     }
 
 }
