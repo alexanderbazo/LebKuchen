@@ -68,6 +68,21 @@ public abstract class BaseScene implements KeyboardInputHandler, MouseInputHandl
         }
     }
 
+    public ArrayList<Actor> getActors() {
+        return actors;
+    }
+
+    // @TODO Use streams to filter actor list for given type
+    public ArrayList<Actor> getActorOfType(Class<? extends Actor> type) {
+        ArrayList<Actor> relevantActors = new ArrayList<>();
+        for (Actor actor : actors) {
+            if (type.isInstance(actor)) {
+                relevantActors.add(actor);
+            }
+        }
+        return relevantActors;
+    }
+
     public void removeActor(Actor actor) {
         actors.remove(actor);
         if (actor instanceof KeyboardInputHandler) {

@@ -1,29 +1,36 @@
-package game.actors;
+package game.actors.player;
 
 import config.ColorScheme;
-import de.ur.mi.oop.events.KeyPressedEvent;
-import de.ur.mi.oop.events.KeyReleasedEvent;
+import de.ur.mi.oop.events.*;
 import de.ur.mi.oop.graphics.Circle;
 import de.ur.mi.oop.graphics.Point;
+import game.actors.Actor;
+import game.actors.weapons.Weapon;
 import game.input.KeyboardInputHandler;
+import game.input.MouseInputHandler;
 import game.scenes.BaseScene;
 import utils.DebugInfo;
 
 import java.util.ArrayList;
 
-public class Player extends Actor implements KeyboardInputHandler {
+public class Player extends Actor implements KeyboardInputHandler, MouseInputHandler {
 
     private static final int radius = 15;
 
     private PlayerMovementSpeed currentSpeed = PlayerMovementSpeed.DEFAULT;
     private Circle body;
     private ArrayList<PlayerMovementDirection> directions;
+    private Weapon weapon;
 
     public Player(int x, int y, PlayerMovementSpeed speed, BaseScene hostScene) {
         super(x, y, hostScene);
         currentSpeed = speed;
         directions = new ArrayList<>();
         body = new Circle(x, y, radius, ColorScheme.FLACESCENT);
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 
     @Override
@@ -121,5 +128,26 @@ public class Player extends Actor implements KeyboardInputHandler {
             default:
                 break;
         }
+    }
+
+
+    @Override
+    public void handleMousePressed(MousePressedEvent event) {
+
+    }
+
+    @Override
+    public void handleMouseReleased(MouseReleasedEvent event) {
+        weapon.fire(getHost(), getPosition(), new Point(event.getXPos(), event.getYPos()));
+    }
+
+    @Override
+    public void handleMouseMoved(MouseMovedEvent event) {
+
+    }
+
+    @Override
+    public void handleMouseDragged(MouseDraggedEvent event) {
+
     }
 }

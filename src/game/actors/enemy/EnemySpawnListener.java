@@ -1,6 +1,6 @@
-package game.scenes.game;
+package game.actors.enemy;
 
-import game.actors.Enemy;
+import game.actors.enemy.Enemy;
 
 public interface EnemySpawnListener {
 

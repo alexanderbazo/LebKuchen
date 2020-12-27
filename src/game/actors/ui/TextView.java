@@ -1,7 +1,8 @@
-package game.actors;
+package game.actors.ui;
 
 import de.ur.mi.oop.colors.Color;
 import de.ur.mi.oop.graphics.Label;
+import game.actors.Actor;
 import game.scenes.BaseScene;
 
 public class TextView extends Actor {

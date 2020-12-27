@@ -1,7 +1,7 @@
 package game.levels;
 
-import game.actors.EnemyMovementSpeed;
-import game.actors.PlayerMovementSpeed;
+import game.actors.enemy.EnemyMovementSpeed;
+import game.actors.player.PlayerMovementSpeed;
 
 public class Level {
 
@@ -20,7 +20,7 @@ public class Level {
     }
 
     public static Level next() {
-        return new Level(1, PlayerMovementSpeed.DEFAULT, EnemyMovementSpeed.DEFAULT, 10, 60);
+        return new Level(1, PlayerMovementSpeed.DEFAULT, EnemyMovementSpeed.DEFAULT, 50, 60);
     }
 
 }

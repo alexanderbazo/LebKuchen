@@ -2,7 +2,7 @@ package game.scenes.intro;
 
 import config.*;
 import de.ur.mi.oop.events.*;
-import game.actors.TextView;
+import game.actors.ui.TextView;
 import game.scenes.BaseScene;
 import game.scenes.SceneListener;
 import game.scenes.SceneType;

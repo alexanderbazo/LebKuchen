@@ -17,6 +17,7 @@ public abstract class ColorScheme {
     /**
      * Base colors
      */
-    public static  final Color WHITE = new Color(255,255,255);
+    public static final Color WHITE = new Color(255, 255, 255);
+    public static final Color GREY = new Color(30, 30, 30);
 
 }
