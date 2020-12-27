@@ -1,7 +1,5 @@
 # IntelliJ
-.idea/uiDesigner.xml
-.idea/vcs.xml
-.idea/dictionaries/
+.idea
 out/
 local/
 
