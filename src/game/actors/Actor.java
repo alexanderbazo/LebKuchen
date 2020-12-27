@@ -1,6 +1,7 @@
 package game.actors;
 
 import de.ur.mi.oop.graphics.Point;
+import de.ur.mi.oop.graphics.Rectangle;
 import game.scenes.BaseScene;
 
 public abstract class Actor {
@@ -27,6 +28,10 @@ public abstract class Actor {
 
     public Point getPosition() {
         return new Point(position.getXPos(), position.getYPos());
+    }
+
+    public Rectangle getHitBox() {
+        return null;
     }
     
     public void update() {

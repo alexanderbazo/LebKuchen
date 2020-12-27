@@ -44,6 +44,11 @@ public class Projectile extends Actor {
     }
 
     @Override
+    public Rectangle getHitBox() {
+        return new Rectangle(body.getXPos() - PROJECTILE_RADIUS, body.getYPos() - PROJECTILE_RADIUS, PROJECTILE_RADIUS * 2, PROJECTILE_RADIUS * 2);
+    }
+
+    @Override
     public void update() {
         super.update();
         body.move(velocity.getXPos(), velocity.getYPos());
@@ -51,7 +56,7 @@ public class Projectile extends Actor {
         if(!bounds.hitTest(body.getXPos(), body.getYPos())) {
             listener.onProjectileLeftCanvas(this);
         }
-        ArrayList<Enemy> hitEnemies = world.getEnemiesAt(body.getXPos(), body.getYPos(), PROJECTILE_RADIUS);
+        ArrayList<Enemy> hitEnemies = world.getIntersectingEnemies(getHitBox());
         if(hitEnemies.size() == 0) {
             return;
         }
