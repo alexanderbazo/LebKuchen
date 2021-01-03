@@ -49,6 +49,7 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
         weapon.setListener(this);
         weapon.addAmmunition(100);
         player.setWeapon(weapon);
+        player.setWorld(this);
         actorsToRemoveAfterFrame = new ArrayList<>();
     }
 
