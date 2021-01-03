@@ -44,7 +44,7 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
         level = Level.next();
         player = new Player(Display.WINDOW_WIDTH / 2, Display.WINDOW_HEIGHT / 2, level.playerSpeed, this);
         addActor(player);
-        spawner = new EnemySpawner(this, this);
+        spawner = new EnemySpawner(this, this, this);
         weapon = new Weapon("Pistol", Weapons.PISTOL_DAMAGE, Weapons.PISTOL_COOLDOWN, Weapons.PISTOL_SPLASH_RADIUS, Weapons.PISTOL_PROJECTILE_SPEED);
         weapon.setListener(this);
         weapon.addAmmunition(100);

@@ -17,8 +17,8 @@ import java.util.Random;
 
 public class Enemy extends Actor {
 
-    private static final int WIDTH = 48;
-    private static final int HEIGHT = 48;
+    public static final int WIDTH = 48;
+    public static final int HEIGHT = 48;
     private static final int HEALTH_BAR_WIDTH = 48;
     private static final int HEALTH_BAR_HEIGHT = 8;
     private static final int ANIMATION_SPEED_IN_FRAMES = 3;
