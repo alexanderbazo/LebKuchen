@@ -3,8 +3,6 @@ package game.actors.enemy;
 import config.Assets;
 import config.ColorScheme;
 import de.ur.mi.oop.colors.Color;
-import de.ur.mi.oop.graphics.Circle;
-import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.graphics.Rectangle;
 import game.actors.Actor;
@@ -55,7 +53,7 @@ public class Enemy extends Actor {
     public void hit(float damage) {
         health -= damage;
         healthBarValue.setWidth(((HEALTH_BAR_WIDTH / 100f) * health));
-        if(health <= 0) {
+        if (health <= 0) {
             listener.onEnemyDestroyed(this);
         }
     }
@@ -85,12 +83,11 @@ public class Enemy extends Actor {
     @Override
     public void draw() {
         body.draw();
-        if(health != MAX_HEALTH) {
+        if (health != MAX_HEALTH) {
             healthBar.draw();
             healthBarValue.draw();
         }
     }
-
 
 
 }

@@ -41,16 +41,16 @@ public class Weapon {
     }
 
     public void fire(BaseScene host, Point origin, Point target) {
-        if(remainingAmmunition == 0) {
+        if (remainingAmmunition == 0) {
             return;
         }
-        if(framesSinceLastShoot < cooldownFrames) {
+        if (framesSinceLastShoot < cooldownFrames) {
             return;
         }
         Projectile projectile = new Projectile((int) origin.getXPos(), (int) origin.getYPos(), host, target, damagePerProjectile, projectileSpeed, splashRadius);
         remainingAmmunition--;
         framesSinceLastShoot = 0;
-        if(listener != null) {
+        if (listener != null) {
             listener.onProjectileFired(projectile);
         }
     }

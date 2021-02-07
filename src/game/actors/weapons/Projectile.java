@@ -31,7 +31,7 @@ public class Projectile extends Actor {
         this.damage = damage;
         this.speed = speed;
         this.splashRadius = splashRadius;
-        velocity = Geometry.calculateMovementVector(new Point(x,y), target, speed);
+        velocity = Geometry.calculateMovementVector(new Point(x, y), target, speed);
         body = new Circle(x, y, PROJECTILE_RADIUS, PROJECTILE_COLOR);
     }
 
@@ -53,11 +53,11 @@ public class Projectile extends Actor {
         super.update();
         body.move(velocity.getXPos(), velocity.getYPos());
         Rectangle bounds = new Rectangle(0, 0, world.getWidth(), world.getHeight());
-        if(!bounds.hitTest(body.getXPos(), body.getYPos())) {
+        if (!bounds.hitTest(body.getXPos(), body.getYPos())) {
             listener.onProjectileLeftCanvas(this);
         }
         ArrayList<Enemy> hitEnemies = world.getIntersectingEnemies(getHitBox());
-        if(hitEnemies.size() == 0) {
+        if (hitEnemies.size() == 0) {
             return;
         }
         ArrayList<Enemy> nearbyEnemies = world.getEnemiesAt(body.getXPos(), body.getYPos(), splashRadius);

@@ -12,7 +12,6 @@ import game.input.MouseInputHandler;
 import game.scenes.BaseScene;
 import game.world.GameWorld;
 import utils.DebugInfo;
-import utils.Geometry;
 
 import java.util.ArrayList;
 

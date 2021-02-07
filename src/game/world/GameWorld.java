@@ -8,8 +8,11 @@ import java.util.ArrayList;
 public interface GameWorld {
 
     int getWidth();
+
     int getHeight();
+
     ArrayList<Enemy> getEnemiesAt(float x, float y, float radius);
+
     ArrayList<Enemy> getIntersectingEnemies(Rectangle hitBox);
 
 }

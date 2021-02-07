@@ -2,8 +2,6 @@ package game.actors.ui;
 
 import de.ur.mi.oop.graphics.Image;
 
-import java.util.ArrayList;
-
 public class Animation {
 
     private final int framesPerSprite;
@@ -45,7 +43,7 @@ public class Animation {
     }
 
     public void move(float x, float y) {
-        for(Image image: sprites) {
+        for (Image image : sprites) {
             image.move(x, y);
         }
     }
@@ -72,7 +70,7 @@ public class Animation {
 
     private static Image[] loadSprites(float x, float y, float width, float height, String[] sprites) {
         Image[] spriteImages = new Image[sprites.length];
-        for(int i = 0; i < sprites.length; i++) {
+        for (int i = 0; i < sprites.length; i++) {
             Image image = new Image(x, y, sprites[i]);
             image.setWidth(width, true);
             image.setHeight(height, true);

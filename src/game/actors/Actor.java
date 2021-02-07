@@ -33,12 +33,12 @@ public abstract class Actor {
     public Rectangle getHitBox() {
         return null;
     }
-    
+
     public void update() {
-        
+
     }
-    
+
     public void draw() {
-        
+
     }
 }
