@@ -9,20 +9,20 @@ import java.util.ArrayList;
  * Diese Klasse unterstützt Sie bei der Integration zusätzlicher Schriftarten in Ihre GraphicsApp-Umgebung. Verwenden Sie die
  * Methode "loadFonts", um zu Beginn zusätzliche TrueType-Schriftarten aus einem Verzeichnis innerhalb des Projekts zu laden.
  * Diese Schriftarten können im Anschluss in Label-Instanzen verwendet werden.
- *
+ * <p>
  * Beispiel:
- *
- *  // z.B. in initialize()
- *  FontHelper.loadFonts("data/fonts");
- *
- *  // Verwenden der geladenen Schriftarten
- *  Label label = new Label(0, 0, "Hello World");
- *  label.setFont("CustomFont"); // Hier muss der FontName der zusätzlich geladenen Schriftart angegeben werden
- *
+ * <p>
+ * // z.B. in initialize()
+ * FontHelper.loadFonts("data/fonts");
+ * <p>
+ * // Verwenden der geladenen Schriftarten
+ * Label label = new Label(0, 0, "Hello World");
+ * label.setFont("CustomFont"); // Hier muss der FontName der zusätzlich geladenen Schriftart angegeben werden
+ * <p>
  * Eine Liste der per "loadFonts" geladenen Schriftarten können Sie über den Aufruf der Methode "printLoadedFonts()"
  * auf der Konsole ausgeben:
- *
- *   FontHelper.printLoadedFonts();
+ * <p>
+ * FontHelper.printLoadedFonts();
  */
 
 public abstract class FontLoader {

@@ -1,7 +1,10 @@
 package game.scenes.intro;
 
-import config.*;
-import de.ur.mi.oop.events.*;
+import config.Assets;
+import config.ColorScheme;
+import config.Fonts;
+import config.Game;
+import de.ur.mi.oop.events.KeyPressedEvent;
 import game.actors.ui.TextView;
 import game.scenes.BaseScene;
 import game.scenes.SceneListener;

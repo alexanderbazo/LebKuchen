@@ -3,7 +3,6 @@ package game.scenes.game;
 import config.ColorScheme;
 import config.Display;
 import config.Weapons;
-import de.ur.mi.oop.graphics.Circle;
 import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.graphics.Rectangle;
 import game.actors.Actor;
@@ -12,6 +11,7 @@ import game.actors.enemy.EnemyListener;
 import game.actors.enemy.EnemySpawnListener;
 import game.actors.enemy.EnemySpawner;
 import game.actors.player.Player;
+import game.actors.ui.Crosshair;
 import game.actors.weapons.Projectile;
 import game.actors.weapons.ProjectileListener;
 import game.actors.weapons.Weapon;
@@ -35,6 +35,7 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
     private ArrayList<Actor> actorsToRemoveAfterFrame;
     private EnemySpawner spawner;
     private Weapon weapon;
+    private Crosshair crosshair;
 
     private int enemiesDestroyed = 0;
 
@@ -44,11 +45,14 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
         level = Level.next();
         player = new Player(Display.WINDOW_WIDTH / 2, Display.WINDOW_HEIGHT / 2, level.playerSpeed, this);
         addActor(player);
-        spawner = new EnemySpawner(this, this);
+        spawner = new EnemySpawner(this, this, this);
         weapon = new Weapon("Pistol", Weapons.PISTOL_DAMAGE, Weapons.PISTOL_COOLDOWN, Weapons.PISTOL_SPLASH_RADIUS, Weapons.PISTOL_PROJECTILE_SPEED);
         weapon.setListener(this);
         weapon.addAmmunition(100);
         player.setWeapon(weapon);
+        player.setWorld(this);
+        crosshair = new Crosshair(0, 0, this);
+        addActor(crosshair);
         actorsToRemoveAfterFrame = new ArrayList<>();
     }
 
@@ -71,7 +75,7 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
     }
 
     private void removeObsoleteActors() {
-        for(Actor actor: actorsToRemoveAfterFrame) {
+        for (Actor actor : actorsToRemoveAfterFrame) {
             removeActor(actor);
         }
         actorsToRemoveAfterFrame.clear();
@@ -99,7 +103,7 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
     @Override
     public void onProjectileHitEnemies(Projectile projectile, ArrayList<Enemy> enemies) {
         actorsToRemoveAfterFrame.add(projectile);
-        for(Enemy enemy: enemies) {
+        for (Enemy enemy : enemies) {
             enemy.hit(projectile.damage);
         }
     }
@@ -124,8 +128,8 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
         ArrayList<Enemy> enemies = new ArrayList<>();
         // Using rectangular hit box for  blast radius
         Rectangle hitBox = new Rectangle(x, y, radius, radius);
-        for(Actor enemy: getActorOfType(Enemy.class)) {
-            if(Geometry.intersects(enemy.getHitBox(), hitBox)) {
+        for (Actor enemy : getActorOfType(Enemy.class)) {
+            if (Geometry.intersects(enemy.getHitBox(), hitBox)) {
                 enemies.add((Enemy) enemy);
             }
         }
@@ -135,8 +139,8 @@ public class GameScene extends BaseScene implements GameWorld, EnemySpawnListene
     @Override
     public ArrayList<Enemy> getIntersectingEnemies(Rectangle hitBox) {
         ArrayList<Enemy> enemies = new ArrayList<>();
-        for(Actor enemy: getActorOfType(Enemy.class)) {
-            if(Geometry.intersects(enemy.getHitBox(), hitBox)) {
+        for (Actor enemy : getActorOfType(Enemy.class)) {
+            if (Geometry.intersects(enemy.getHitBox(), hitBox)) {
                 enemies.add((Enemy) enemy);
             }
         }
